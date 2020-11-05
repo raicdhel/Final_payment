@@ -5,8 +5,6 @@ C:\Azure\pizza\Final_payment\src\main\java\pizza\OrderCanceled.java
 C:\Azure\pizza\Final_payment\src\main\java\pizza\Paid.java
 C:\Azure\pizza\Final_payment\src\main\java\pizza\AbstractEvent.java
 C:\Azure\pizza\Final_payment\src\main\java\pizza\PaymentController.java
-C:\Azure\pizza\Final_payment\src\main\java\pizza\external\Location.java
-C:\Azure\pizza\Final_payment\src\main\java\pizza\external\LocationService.java
 C:\Azure\pizza\Final_payment\src\main\java\pizza\Payment.java
 C:\Azure\pizza\Final_payment\src\main\java\pizza\PaymentCanceled.java
 C:\Azure\pizza\Final_payment\src\main\java\pizza\PaymentRepository.java
