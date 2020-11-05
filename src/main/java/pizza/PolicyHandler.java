@@ -16,7 +16,7 @@ public class PolicyHandler{
     }
 
     @Autowired
-    PaymentRepository PaymentRepository;
+    PaymentRepository paymentRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverOrderCanceled_CancelPayment(@Payload OrderCanceled orderCanceled){
@@ -26,16 +26,9 @@ public class PolicyHandler{
             payment.setOrderId(orderCanceled.getId());
             payment.setPaymentStatus("Canceled");
 
-            PaymentRepository.save(payment);
+            paymentRepository.save(payment);
 
             System.out.println("##### listener CancelPayment : " + orderCanceled.toJson());
-
-            // 서킷브레이크 테스트
-            try {
-                Thread.sleep((long) (400 + Math.random() * 300));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 

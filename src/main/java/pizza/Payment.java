@@ -19,8 +19,6 @@ public class Payment {
         Paid paid = new Paid();
         BeanUtils.copyProperties(this, paid);
         paid.publishAfterCommit();
-
-
     }
 
     @PostUpdate
@@ -29,7 +27,17 @@ public class Payment {
         BeanUtils.copyProperties(this, paymentCanceled);
         paymentCanceled.publishAfterCommit();
 
+        //Following code causes dependency to external APIs
+        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
+        pizza.external.Location location = new pizza.external.Location();
+
+        location.setOrderId(this.getId());
+        location.setNowStatus(this.paymentStatus);
+
+        // mappings goes here
+        PaymentApplication.applicationContext.getBean(pizza.external.LocationService.class)
+            .doSave(location);
     }
 
 
@@ -54,8 +62,4 @@ public class Payment {
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
-
-
-
-
 }
